@@ -2,9 +2,8 @@ import streamlit as st
 import datetime as dt
 import pandas as pd
 import json
-# import folium
-# from streamlit_folium import folium_static
 import time
+from PIL import Image
 st.set_page_config(layout="wide")
 
 ##### HEADER #####
@@ -17,20 +16,30 @@ st.write("------------------------------------------")
 
 sidebar_options = ("Start Page", "Algorithm Description", "Results of the example image dataset", "Take your own picture and test", "Test bulk images")
 
+##### PAGE CODE ##########
 def start_page():
     st.sidebar.write("---------------------")
     st.sidebar.success("Start Page showing on the right:")
     
-    st.write("""
-    This interactive app is designed as a representation of our groups submission
-    for the First Year Project 2, detecting melanoma on skin using image 
-    analysis algorithms.  
+    col1, col2 = st.columns(2)
 
-    On the left hand side you can choose different options from the sidebar.
-    These include a complete breakdown of our algorithm, a example using images provided
-    in the image example dataset, and also an app with which you can take a 
-    picture yourself and immediately test it.  
-    """)
+    with col1:
+        st.write("""
+        This interactive app is designed as a representation of our groups submission
+        for the First Year Project 2, detecting the presence of melanoma on skin using image 
+        analysis algorithms.  
+
+        On the left hand side you can choose different options from the sidebar.
+        These include a complete breakdown of our algorithm, a example using images provided
+        in the image example dataset, and also an app with which you can take a 
+        picture yourself and immediately test it.  
+        """)
+
+    with col2:
+        melanoma_image = Image.open('styles/melanoma.jpg')
+        st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#/media/File:Melanoma.jpg')
+
+    return
 
 def alg_descrip_page():
     st.sidebar.write("---------------------")
@@ -68,6 +77,7 @@ def test_bulk_img():
     """)
     return
 
+###### MAIN FUNCTION #######
 def main():
 
     st.sidebar.title("Explore the following:")
