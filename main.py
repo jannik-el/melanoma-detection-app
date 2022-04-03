@@ -141,17 +141,16 @@ def segmenting(im2):
     segments_slic = slic(im2, n_segments=100, compactness=10, sigma=1, start_label=1)
     return segments_slic
 
-    fig, ax = plt.subplots(2, 1, figsize=(10, 10), sharex=True, sharey=True)
-    ax[0].imshow(im2)
-    ax[0].set_title("Original")
-    ax[1].imshow(mark_boundaries(im2, segments_slic))
-    ax[1].set_title('SLIC')
-    for a in ax.ravel():
-        a.set_axis_off()
-    plt.tight_layout()
-    plt.show()
+    # fig, ax = plt.subplots(2, 1, figsize=(10, 10), sharex=True, sharey=True)
+    # ax[0].imshow(im2)
+    # ax[0].set_title("Original")
+    # ax[1].imshow(mark_boundaries(im2, segments_slic))
+    # ax[1].set_title('SLIC')
+    # for a in ax.ravel():
+    #     a.set_axis_off()
+    # plt.tight_layout()
+    # plt.show()
 
-segmenting(im2)
 
 
 
