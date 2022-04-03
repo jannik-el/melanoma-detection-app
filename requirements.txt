@@ -4,3 +4,4 @@ folium==0.12.1
 streamlit==1.5.1
 streamlit-folium==0.5.0
 datetime==4.3
+click==8
