@@ -2,8 +2,8 @@ import streamlit as st
 import datetime as dt
 import pandas as pd
 import json
-import folium
-from streamlit_folium import folium_static
+# import folium
+# from streamlit_folium import folium_static
 import time
 st.set_page_config(layout="wide")
 
