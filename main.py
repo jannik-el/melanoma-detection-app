@@ -10,7 +10,6 @@ st.set_page_config(layout="wide")
 ##### HEADER #####
 
 st.title("Melanoma Detection App")
-st.write("------------------------------------------")
 st.subheader("First Year Project, Image Analysis")
 st.caption("*IT-University of Copenhagen, Bsc. in Data Science*")
 st.caption("By Juraj Septak, Gusts Gustav, Franek Liszka, Mirka and Jannik Elsäßer")
