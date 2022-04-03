@@ -88,5 +88,5 @@ def main():
     elif app_mode == sidebar_options[4]:
         test_bulk_img()
 
-
-main()
+if __name__ == "__main__":
+    main()
