@@ -37,7 +37,7 @@ def start_page():
         """)
 
     with col2:
-        melanoma_image = Image.open(r'./styles/melanoma.jpg', 'rb')
+        melanoma_image = Image.open(r'./styles/melanoma.jpg')
         st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#/media/File:Melanoma.jpg')
 
     return
