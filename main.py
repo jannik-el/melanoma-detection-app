@@ -37,7 +37,7 @@ def start_page():
         """)
 
     with col2:
-        melanoma_image = Image.open("https://upload.wikimedia.org/wikipedia/commons/6/6c/Melanoma.jpg")
+        melanoma_image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/Melanoma.jpg"
         st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#/media/File:Melanoma.jpg')
 
     return
