@@ -4,6 +4,7 @@ import pandas as pd
 import json
 import time
 from PIL import Image
+
 st.set_page_config(layout="wide")
 
 ##### HEADER #####
@@ -36,7 +37,7 @@ def start_page():
         """)
 
     with col2:
-        melanoma_image = Image.open('styles/melanoma.jpg')
+        melanoma_image = Image.open('./styles/melanoma.jpg')
         st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#/media/File:Melanoma.jpg')
 
     return
@@ -78,6 +79,8 @@ def test_bulk_img():
     return
 
 ###### MAIN FUNCTION #######
+# the st.cache suppress warning unlocks better performance, which is best for our algorithm
+@st.cache(suppress_st_warning=True)
 def main():
 
     st.sidebar.title("Explore the following:")
