@@ -22,14 +22,14 @@ def start_page():
     st.sidebar.write("---------------------")
     st.sidebar.success("Start Page showing on the right:")
     
-    st.text("""
+    st.write("""
     This interactive app is designed as a representation of our groups submission
     for the First Year Project 2, detecting melanoma on skin using image 
     analysis algorithms.  
 
     On the left hand side you can choose different options from the sidebar.
     These include a complete breakdown of our algorithm, a example using images provided
-    in the image example data set, and also an app with which you can take a 
+    in the image example dataset, and also an app with which you can take a 
     picture yourself and immediately test it.  
     """)
 
@@ -37,22 +37,36 @@ def alg_descrip_page():
     st.sidebar.write("---------------------")
     st.sidebar.success("Page showing on the right:")
 
+    st.write("This is where a breakdown of the algorithm, using an image from the dataset as an example, goes:")
+
 def example_results_page():
     st.sidebar.write("---------------------")
     st.sidebar.success("Page showing on the right:")
+
+    st.write("Not quite sure what we should put here, maybe results from our analysis, idk we'll figure it out.")
 
     return
 
 def take_pic_page():
     st.sidebar.write("---------------------")
     st.sidebar.success("Page showing on the right:")
+
+    take_picture = st.camera_input("Take a picture to test it for melanoma:")
+
+    if take_picture:
+        st.image(take_picture)
     
+    st.write("Currently it just shows the picture, but here we can build the algorithm in and immediately show the results which would be really cool")
     return
 
 def test_bulk_img():
     st.sidebar.write("---------------------")
     st.sidebar.success("Page showing on the right:")
 
+    st.write("""
+    The idea is that they can upload a folder with a bunch of images and test them on this page.
+    This might be a bit difficult to implement. 
+    """)
     return
 
 def main():
