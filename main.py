@@ -1,4 +1,3 @@
-from tracemalloc import start
 from numpy import take
 import streamlit as st
 import datetime as dt
