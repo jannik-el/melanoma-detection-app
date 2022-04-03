@@ -10,8 +10,10 @@ st.set_page_config(layout="wide")
 ##### HEADER #####
 
 st.title("Melanoma Detection App")
+st.write("------------------------------------------")
 st.subheader("First Year Project, Image Analysis")
 st.caption("*IT-University of Copenhagen, Bsc. in Data Science*")
+st.write("------------------------------------------")
 st.caption("By Juraj Septak, Gusts Gustav, Franek Liszka, Mirka and Jannik Elsäßer")
 
 sidebar_options = ("Start Page", "Algorithm Description", "Results of the example image dataset", "Take your own picture and test", "Test bulk images")
