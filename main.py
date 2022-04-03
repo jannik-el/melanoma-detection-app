@@ -3,6 +3,11 @@ import datetime as dt
 import pandas as pd
 import json
 import time
+import matplotlib.image as img
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+from skimage.segmentation import slic, mark_boundaries
 from PIL import Image
 
 st.set_page_config(layout="wide")
@@ -16,6 +21,7 @@ st.caption("By Juraj Septak, Gusts Gustav, Franek Liszka, Mirka and Jannik Elsä
 st.write("------------------------------------------")
 
 sidebar_options = ("Start Page", "Algorithm Description", "Results of the example image dataset", "Take your own picture and test", "Test bulk images")
+melanoma_image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/Melanoma.jpg"
 
 ##### PAGE CODE ##########
 def start_page():
@@ -37,7 +43,6 @@ def start_page():
         """)
 
     with col2:
-        melanoma_image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/Melanoma.jpg"
         st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#/media/File:Melanoma.jpg', width=400)
 
     return
@@ -47,6 +52,13 @@ def alg_descrip_page():
     st.sidebar.success("Page showing on the right:")
 
     st.write("This is where a breakdown of the algorithm, using an image from the dataset as an example, goes:")
+    with st.expander("Masking and Segmenting the image:"):
+
+        st.write("Load image, create mask, and draw white circle on mask")
+        # test_mask = np.array(Image.open('data/example_segmentation/ISIC_0013421_segmentation.png'))
+        ima=np.array(Image.open(melanoma_image))
+        plt.imshow(ima)
+
 
 def example_results_page():
     st.sidebar.write("---------------------")
@@ -102,6 +114,49 @@ def main():
 
     elif app_mode == sidebar_options[4]:
         test_bulk_img()
+
+############## FEATURE DETECTION CODE ###################
+
+def masking(ima,test_mask):
+    """
+    Masking and cropping input image with binary mask
+    """
+
+    result = cv2.bitwise_and(ima,ima,mask=test_mask) #putting the mask on the image
+
+    #cropping
+    setm=set()
+    setn=set()
+    for x, i in enumerate(test_mask[:]):
+        if 255 in i:
+            setm.add(x)
+    for i in range(test_mask.shape[1]):
+        if 255 in test_mask[:,i]:
+            setn.add(i)
+    im2 = result[min(setm):max(setm),min(setn):max(setn),:]
+    return im2
+
+# Divide the pixels into segments (segment = piece of continuous color in the image)
+def segmenting(im2):
+    segments_slic = slic(im2, n_segments=100, compactness=10, sigma=1, start_label=1)
+    return segments_slic
+
+    fig, ax = plt.subplots(2, 1, figsize=(10, 10), sharex=True, sharey=True)
+    ax[0].imshow(im2)
+    ax[0].set_title("Original")
+    ax[1].imshow(mark_boundaries(im2, segments_slic))
+    ax[1].set_title('SLIC')
+    for a in ax.ravel():
+        a.set_axis_off()
+    plt.tight_layout()
+    plt.show()
+
+segmenting(im2)
+
+
+
+
+
 
 if __name__ == "__main__":
     main()

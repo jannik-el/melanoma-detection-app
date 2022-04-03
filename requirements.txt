@@ -5,3 +5,7 @@ streamlit==1.5.1
 streamlit-folium==0.5.0
 datetime==4.3
 click==8
+numpy
+opencv-python-headless
+scikit-image
+scikit-learn
