@@ -9,6 +9,7 @@ import cv2
 import numpy as np
 from skimage.segmentation import slic, mark_boundaries
 from PIL import Image
+import requests
 
 st.set_page_config(layout="wide")
 
@@ -43,7 +44,7 @@ def start_page():
         """)
 
     with col2:
-        st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#/media/File:Melanoma.jpg', width=400)
+        st.image(melanoma_image, caption='Melanoma on a patients skin, https://en.wikipedia.org/wiki/Melanoma#', width=400)
 
     return
 
@@ -53,12 +54,13 @@ def alg_descrip_page():
 
     st.write("This is where a breakdown of the algorithm, using an image from the dataset as an example, goes:")
     with st.expander("Masking and Segmenting the image:"):
-
         st.write("Load image, create mask, and draw white circle on mask")
-        # test_mask = np.array(Image.open('data/example_segmentation/ISIC_0013421_segmentation.png'))
-        ima=np.array(Image.open(melanoma_image))
+        # downloading the images from the repo
+        example_image = download_image(image_url, "example_image")
+        example_mask = download_image()
+        test_mask = np.array(Image.open(example_mask))
+        ima=np.array(Image.open(example_mask))
         plt.imshow(ima)
-
 
 def example_results_page():
     st.sidebar.write("---------------------")
@@ -153,10 +155,17 @@ def segmenting(im2):
     # plt.tight_layout()
     # plt.show()
 
+###### DOWNLOADING IMAGE DATA CODE ###############
 
+image_url = "https://github.com/jannik-el/melanoma-detection-app/blob/main/data/example-images/ISIC_0001769.jpg?raw=true"
+mask_url = "https://github.com/jannik-el/melanoma-detection-app/blob/main/data/example-mask/ISIC_0001769_segmentation.png?raw=true"
 
-
-
+def download_image(url, name):
+    download = requests.get(url).content
+    f = open('{name}.jpg', 'wb')
+    f.write(download)
+    f.close()
+    return "{name}.jpg"
 
 
 if __name__ == "__main__":
