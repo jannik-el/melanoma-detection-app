@@ -101,10 +101,8 @@ def test_bulk_img():
     """)
     return
 
-###### MAIN FUNCTION #######
-# the st.cache suppress warning unlocks better performance, which is best for our algorithm
-# commented out cus it broke stuff
-# @st.cache(suppress_st_warning=True)
+###### MAIN FUNCTION #################
+
 def main():
 
     st.sidebar.title("Explore the following:")
