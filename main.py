@@ -59,8 +59,10 @@ def alg_descrip_page():
         example_image = download_image(image_url, "example_image")
         example_mask = download_image(mask_url, "example_mask")
         test_mask = np.array(Image.open(example_mask))
+        fig, ax = plt.subplots()
         ima=np.array(Image.open(example_mask))
-        st.pyplot.imshow(ima)
+        ax.imshow(ima)
+        st.pyplot(fig)
 
 def example_results_page():
     st.sidebar.write("---------------------")
