@@ -57,6 +57,7 @@ def alg_descrip_page():
         st.header("Loading image and putting mask on top")
         # downloading the images from the repo
         example_image = download_image(image_url, "example_image")
+        st.write(example_image)
         example_mask = download_image(mask_url, "example_mask")
 
         algcol1, algcol2 = st.columns(2)
