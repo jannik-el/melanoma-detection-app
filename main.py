@@ -54,15 +54,22 @@ def alg_descrip_page():
 
     st.write("This is where a breakdown of the algorithm, using an image from the dataset as an example, goes:")
     with st.expander("Masking and Segmenting the image:"):
-        st.write("Load image, create mask, and draw white circle on mask")
+        st.header("Loading image and putting mask on top")
         # downloading the images from the repo
         example_image = download_image(image_url, "example_image")
         example_mask = download_image(mask_url, "example_mask")
+
+        algcol1, algcol2 = st.columns(2)
+        with algcol1:
+            st.write("The original Image")
+            plot_image(example_image)
+        with algcol2:
+            st.write("The mask")
+            plot_image(example_mask)
+        st.write("The combined images:")
         test_mask = np.array(Image.open(example_mask))
-        fig, ax = plt.subplots()
-        ima=np.array(Image.open(example_mask))
-        ax.imshow(ima)
-        st.pyplot(fig)
+        plot_image(test_mask)
+        
 
 def example_results_page():
     st.sidebar.write("---------------------")
@@ -139,7 +146,7 @@ def masking(ima,test_mask):
             setn.add(i)
     im2 = result[min(setm):max(setm),min(setn):max(setn),:]
     return im2
-
+    
 def segmenting(im2):
     """
     Divide the pixels into segments (segment = piece of continuous color in the image)
@@ -169,6 +176,13 @@ def download_image(url, name):
     f.close()
     return "{name}.jpg"
 
+######## OTHER BOILERPLATE CODE ##############
+
+def plot_image(image):
+    fig, ax = plt.subplots()
+    ima=np.array(Image.open(image))
+    ax.imshow(ima)
+    return st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
