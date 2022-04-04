@@ -60,7 +60,7 @@ def alg_descrip_page():
         example_mask = download_image(mask_url, "example_mask")
         test_mask = np.array(Image.open(example_mask))
         ima=np.array(Image.open(example_mask))
-        st.plt.imshow(ima)
+        st.pyplot.imshow(ima)
 
 def example_results_page():
     st.sidebar.write("---------------------")
