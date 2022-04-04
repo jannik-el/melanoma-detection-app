@@ -136,8 +136,10 @@ def masking(ima,test_mask):
     im2 = result[min(setm):max(setm),min(setn):max(setn),:]
     return im2
 
-# Divide the pixels into segments (segment = piece of continuous color in the image)
 def segmenting(im2):
+    """
+    Divide the pixels into segments (segment = piece of continuous color in the image)
+    """
     segments_slic = slic(im2, n_segments=100, compactness=10, sigma=1, start_label=1)
     return segments_slic
 
