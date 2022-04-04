@@ -62,10 +62,10 @@ def alg_descrip_page():
         algcol1, algcol2 = st.columns(2)
         with algcol1:
             st.write("The original Image")
-            plot_image(example_image)
+            st.image(example_image)
         with algcol2:
             st.write("The mask")
-            plot_image(example_mask)
+            st.image(example_mask)
         st.write("The combined images:")
         test_mask = np.array(Image.open(example_mask))
         plot_image(test_mask)
