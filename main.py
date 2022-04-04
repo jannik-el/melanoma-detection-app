@@ -57,7 +57,6 @@ def alg_descrip_page():
         st.header("Loading image and putting mask on top")
         # downloading the images from the repo
         example_image = download_image(image_url, "example_image")
-        st.write(example_image)
         example_mask = download_image(mask_url, "example_mask")
 
         algcol1, algcol2 = st.columns(2)
@@ -101,29 +100,6 @@ def test_bulk_img():
     This might be a bit difficult to implement. 
     """)
     return
-
-###### MAIN FUNCTION #################
-
-def main():
-
-    st.sidebar.title("Explore the following:")
-    st.sidebar.write("---------------------")
-    app_mode = st.sidebar.selectbox("Please select from the following:", sidebar_options)
-
-    if app_mode == "Start Page":
-        start_page()
-
-    elif app_mode == "Algorithm Description":
-        alg_descrip_page()
-
-    elif app_mode == sidebar_options[2]:
-        example_results_page()
-
-    elif app_mode == sidebar_options[3]:
-        take_pic_page()
-
-    elif app_mode == sidebar_options[4]:
-        test_bulk_img()
 
 ############## FEATURE DETECTION CODE ###################
 
@@ -182,6 +158,30 @@ def plot_image(image):
     ima=np.array(Image.open(image))
     ax.imshow(ima)
     return st.pyplot(fig)
+
+
+###### MAIN FUNCTION #################
+
+def main():
+
+    st.sidebar.title("Explore the following:")
+    st.sidebar.write("---------------------")
+    app_mode = st.sidebar.selectbox("Please select from the following:", sidebar_options)
+
+    if app_mode == "Start Page":
+        start_page()
+
+    elif app_mode == "Algorithm Description":
+        alg_descrip_page()
+
+    elif app_mode == sidebar_options[2]:
+        example_results_page()
+
+    elif app_mode == sidebar_options[3]:
+        take_pic_page()
+
+    elif app_mode == sidebar_options[4]:
+        test_bulk_img()
 
 if __name__ == "__main__":
     main()
