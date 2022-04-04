@@ -170,10 +170,10 @@ mask_url = "https://github.com/jannik-el/melanoma-detection-app/blob/main/data/e
 
 def download_image(url, name):
     download = requests.get(url).content
-    f = open('{name}.jpg', 'wb')
+    f = open(f'{name}.jpg', 'wb')
     f.write(download)
     f.close()
-    return "{name}.jpg"
+    return f"{name}.jpg"
 
 ######## OTHER BOILERPLATE CODE ##############
 
