@@ -57,7 +57,7 @@ def alg_descrip_page():
         st.write("Load image, create mask, and draw white circle on mask")
         # downloading the images from the repo
         example_image = download_image(image_url, "example_image")
-        example_mask = download_image()
+        example_mask = download_image(mask_url, "example_mask")
         test_mask = np.array(Image.open(example_mask))
         ima=np.array(Image.open(example_mask))
         plt.imshow(ima)
